@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Excavate — Adventure Wave Labs</title>
+<link rel="canonical" href="https://adventurewave-labs.github.io/excavate-landing/">
+<meta name="description" content="Digital archaeology platform: point it at a dead site's remains and it excavates, catalogs, and rebuilds them into living history — with a full paper trail. Nothing faked, ever.">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="Excavate — digital archaeology">
+<meta property="og:description" content="Dead site in, living history out. The M0 Resurrection CLI is live-validated against the real Wayback Machine.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://adventurewave-labs.github.io/excavate-landing/">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='20' width='24' height='4' fill='%2338bdf8'/%3E%3Crect x='4' y='25' width='24' height='4' fill='%23fbbf24'/%3E%3Crect x='12' y='12' width='8' height='6' fill='%23e9eef5'/%3E%3C/svg%3E">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#070b10;--ink:#e9eef5;--mut:#8fa0b4;--a1:#38bdf8;--a2:#fbbf24;--card:rgba(255,255,255,.035);--line:rgba(255,255,255,.09)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+code,pre,.mono{font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace}
+.nav{position:sticky;top:0;z-index:9;display:flex;justify-content:space-between;align-items:center;padding:14px 28px;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:9px;font-weight:650;letter-spacing:.2px;font-size:15px}
+.brand .dot{width:9px;height:9px;border-radius:50%;background:var(--a2);box-shadow:0 0 10px var(--a2);animation:pulse 3s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.45}}
+.nav nav{display:flex;gap:8px;align-items:center}
+a{color:inherit;text-decoration:none}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:8px 15px;border:1px solid var(--line);border-radius:9px;font-size:13.5px;font-weight:560;color:var(--ink);transition:border-color .18s,transform .18s,background .18s;background:transparent}
+.btn:hover{border-color:var(--a1);transform:translateY(-1px)}
+.btn.primary{background:linear-gradient(135deg,var(--a1),var(--a2));border:none;color:#04121a;font-weight:700}
+.btn.primary:hover{filter:brightness(1.1)}
+.hero{position:relative;min-height:clamp(440px,60vh,580px);display:flex;align-items:center;justify-content:center;overflow:hidden;text-align:center}
+.hero-art{position:absolute;inset:0}
+.hero-art svg{width:100%;height:100%;display:block}
+.hero-inner{position:relative;z-index:2;max-width:880px;padding:56px 26px 40px}
+.eyebrow{font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--a1);opacity:.92}
+h1{font-size:clamp(42px,7.4vw,74px);font-weight:800;letter-spacing:-1px;margin:10px 0 14px;background:linear-gradient(100deg,var(--a1) 0%,#fff 52%,var(--a2) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tagline{font-size:clamp(16px,2.3vw,19.5px);color:var(--mut);max-width:760px;margin:0 auto 22px}
+.tagline b{color:var(--a2);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:26px}
+.chip{font-family:ui-monospace,Menlo,monospace;font-size:12px;padding:4px 11px;border:1px solid var(--line);border-radius:99px;color:var(--mut);background:rgba(255,255,255,.02)}
+.chip:hover{color:var(--a1);border-color:var(--a1)}
+.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:30px}
+.stats{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;font-size:13px;color:var(--mut)}
+.stats b{color:var(--ink);font-weight:640}
+main{max-width:1020px;margin:0 auto;padding:26px 26px 40px}
+section{margin:44px 0}
+h2{font-size:14px;font-family:ui-monospace,Menlo,monospace;letter-spacing:2.5px;text-transform:uppercase;color:var(--a1);margin-bottom:20px}
+h2::before{content:'// ';color:var(--mut)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;transition:transform .2s,border-color .2s}
+.card:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--a1) 55%,var(--line))}
+.card h3{font-size:16px;margin-bottom:9px;color:var(--ink)}
+.card p{font-size:13.8px;color:var(--mut)}
+.card p b{color:var(--a2);font-weight:600}
+.evidence{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.ev{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.ev .n{font-size:22px;font-weight:780;color:var(--a2);letter-spacing:-.5px}
+.ev .l{font-size:12px;color:var(--mut);margin-top:3px}
+.ev.blue .n{color:var(--a1)}
+.pipeline-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.step{display:flex;gap:12px;align-items:baseline;background:var(--card);border:1px solid var(--line);border-radius:11px;padding:13px 16px}
+.step .k{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--a2);letter-spacing:1.4px;min-width:86px}
+.step p{font-size:13px;color:var(--mut)}
+.cmds{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.cmds .row{display:flex;gap:14px;align-items:baseline;padding:10px 16px;border-bottom:1px solid var(--line);background:var(--card)}
+.cmds .row:last-child{border-bottom:none}
+.cmds .c{font-family:ui-monospace,Menlo,monospace;font-size:13px;color:var(--a1);min-width:190px;white-space:nowrap}
+.cmds .d{font-size:13px;color:var(--mut)}
+.install pre{background:#0a0f16;border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:14px;overflow:auto}
+.install pre + pre{margin-top:10px}
+.install code{font-size:14px;color:var(--a1);white-space:nowrap}
+.install .copy{border:1px solid var(--line);background:transparent;color:var(--mut);border-radius:8px;padding:6px 12px;font-size:12px;cursor:pointer;transition:all .15s;flex-shrink:0}
+.install .copy:hover{color:var(--a1);border-color:var(--a1)}
+.links{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.links a{display:flex;justify-content:space-between;align-items:center;padding:13px 16px;border:1px solid var(--line);border-radius:11px;font-size:13.5px;background:var(--card);transition:border-color .15s,transform .15s}
+.links a:hover{border-color:var(--a1);transform:translateX(3px)}
+.links a span.arr{color:var(--a1)}
+footer{border-top:1px solid var(--line);padding:30px 26px 44px;text-align:center;color:var(--mut);font-size:13px}
+footer .orgs{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-bottom:12px}
+footer a:hover{color:var(--a1)}
+@media(max-width:640px){.nav{padding:12px 16px}.hero-inner{padding:44px 18px 32px}.stats{gap:14px}.cmds .c{min-width:150px}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition:none !important}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="brand"><span class="dot"></span>excavate</div>
+  <nav>
+    <a class="btn" href="https://github.com/adventurewave-labs">Adventure Wave Labs</a>
+    <a class="btn primary" href="https://github.com/adventurewave-labs/excavate">GitHub ↗</a>
+  </nav>
+</header>
+<section class="hero">
+<div class="hero-art">
+<svg viewBox="0 0 1200 460" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+<defs>
+<radialGradient id="lamp" cx="0.5" cy="0.35" r="0.75"><stop offset="0" stop-color="#fbbf24" stop-opacity="0.13"/><stop offset="1" stop-color="#fbbf24" stop-opacity="0"/></radialGradient>
+<radialGradient id="lamp2" cx="0.2" cy="0.2" r="0.6"><stop offset="0" stop-color="#38bdf8" stop-opacity="0.14"/><stop offset="1" stop-color="#38bdf8" stop-opacity="0"/></radialGradient>
+<linearGradient id="fade" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#070b10" stop-opacity="0"/><stop offset="1" stop-color="#070b10"/></linearGradient>
+<linearGradient id="cur" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#fbbf24" stop-opacity=".85"/><stop offset="1" stop-color="#fbbf24" stop-opacity="0"/></linearGradient>
+<filter id="gl"><feGaussianBlur stdDeviation="3"/></filter>
+<filter id="gl2"><feGaussianBlur stdDeviation="5"/></filter>
+<pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1.2" cy="1.2" r="1.2" fill="#38bdf8" opacity=".09"/></pattern>
+</defs>
+<rect width="1200" height="460" fill="#070b10"/>
+<rect width="1200" height="460" fill="url(#dots)"/>
+<rect width="1200" height="460" fill="url(#lamp)"><animate attributeName="opacity" values=".7;1;.7" dur="11s" repeatCount="indefinite"/></rect>
+<rect width="1200" height="460" fill="url(#lamp2)"><animate attributeName="opacity" values="1;.6;1" dur="14s" repeatCount="indefinite"/>
+
+<!-- strata field: full-width, excavation grid at bottom -->
+<g stroke="#fbbf24" stroke-width=".6">
+  <line x1="0" y1="290" x2="1200" y2="290" opacity=".22"/><line x1="0" y1="322" x2="1200" y2="322" opacity=".18"/>
+  <line x1="0" y1="354" x2="1200" y2="354" opacity=".18"/><line x1="0" y1="386" x2="1200" y2="386" opacity=".16"/>
+</g>
+<g fill="#0b111a">
+  <rect x="0" y="262" width="1200" height="28"/><rect x="0" y="290" width="1200" height="32"/>
+  <rect x="0" y="322" width="1200" height="32"/><rect x="0" y="354" width="1200" height="32"/>
+  <rect x="0" y="386" width="1200" height="40"/>
+</g>
+<!-- artifacts -->
+<g fill="#fbbf24">
+  <g transform="translate(150,276)"><rect x="-4" y="-4" width="8" height="8" transform="rotate(45)"><animate attributeName="opacity" values=".2;1;1;.2" keyTimes="0;.1;.6;1" dur="10s" begin="0s" repeatCount="indefinite"/></rect></g>
+  <g transform="translate(420,306)"><circle r="4.5"><animate attributeName="opacity" values=".2;1;1;.2" keyTimes="0;.1;.6;1" dur="10s" begin="2.2s" repeatCount="indefinite"/></circle></g>
+  <g transform="translate(690,270)"><rect x="-4" y="-4" width="8" height="8" transform="rotate(45)"><animate attributeName="opacity" values=".2;1;1;.2" keyTimes="0;.1;.6;1" dur="10s" begin=".9s" repeatCount="indefinite"/></rect></g>
+  <g transform="translate(950,338)"><circle r="4.5"><animate attributeName="opacity" values=".2;1;1;.2" keyTimes="0;.1;.6;1" dur="10s" begin="4.6s" repeatCount="indefinite"/></circle></g>
+  <g transform="translate(300,370)"><rect x="-4" y="-4" width="8" height="8" transform="rotate(45)"><animate attributeName="opacity" values=".2;1;1;.2" keyTimes="0;.1;.6;1" dur="10s" begin="6.4s" repeatCount="indefinite"/></rect></g>
+  <g transform="translate(610,404)"><circle r="4.5"><animate attributeName="opacity" values=".2;1;1;.2" keyTimes="0;.1;.6;1" dur="10s" begin="8.3s" repeatCount="indefinite"/></circle></g>
+  <g transform="translate(1060,270)"><rect x="-4" y="-4" width="8" height="8" transform="rotate(45)"><animate attributeName="opacity" values=".2;1;1;.2" keyTimes="0;.1;.6;1" dur="10s" begin="1.6s" repeatCount="indefinite"/></rect></g>
+</g>
+<!-- depth cursor sweeping down -->
+<rect x="0" y="258" width="1200" height="16" fill="url(#cur)" opacity=".5"><animate attributeName="y" values="258;400;258" keyTimes="0;.5;1" dur="10s" repeatCount="indefinite"/></rect>
+<line x1="0" y1="266" x2="1200" y2="266" stroke="#fbbf24" stroke-width="1.4" filter="url(#gl)"><animate attributeName="y1" values="266;408;266" keyTimes="0;.5;1" dur="10s" repeatCount="indefinite"/><animate attributeName="y2" values="266;408;266" keyTimes="0;.5;1" dur="10s" repeatCount="indefinite"/></line>
+
+<!-- pipeline beam: packets travel above the strata -->
+<path d="M 0 200 L 1200 200" stroke="#1b2635" stroke-width="1.3"/>
+<path d="M 0 200 L 1200 200" stroke="#38bdf8" stroke-width="1.3" stroke-dasharray="3 26" opacity=".4"><animate attributeName="stroke-dashoffset" from="0" to="-232" dur="6s" repeatCount="indefinite"/></path>
+<circle r="3.4" fill="#fbbf24" filter="url(#gl2)"><animateMotion path="M 0 200 L 1200 200" dur="7s" repeatCount="indefinite"/></circle>
+<circle r="2.8" fill="#38bdf8" filter="url(#gl)"><animateMotion path="M 0 200 L 1200 200" dur="11s" begin="3s" repeatCount="indefinite"/></circle>
+
+<rect y="370" width="1200" height="90" fill="url(#fade)"/>
+</svg></div>
+<div class="hero-inner">
+  <div class="eyebrow">adventurewave-labs · digital archaeology</div>
+  <h1>Excavate</h1>
+  <p class="tagline">Point it at any digital remains — a dead site's Wayback URL, a drive, a directory — and it excavates, catalogs, and rebuilds them into <b>living history</b>. Every rewrite logged. Every gap disclosed. <b>Nothing faked, ever.</b></p>
+  <div class="chips"><span class="chip">wayback-machine</span><span class="chip">cdx</span><span class="chip">resurrection</span><span class="chip">provenance</span><span class="chip">bagit-rfc8493</span><span class="chip">publish-gate</span><span class="chip">python</span><span class="chip">cli</span></div>
+  <div class="cta"><a class="btn primary" href="https://github.com/adventurewave-labs/excavate">View on GitHub ↗</a><a class="btn" href="https://github.com/adventurewave-labs/excavate/releases/tag/v0.1.1">Release v0.1.1</a></div>
+  <div class="stats"><span>release <b>v0.1.1</b></span><span><b>3,644</b> files rebuilt live</span><span><b>98.7%</b> of dig recovered</span><span>bag <b>verified VALID</b></span></div>
+</div>
+</section>
+<main>
+<section id="what"><h2>What it does</h2><div class="cards"><div class="card"><h3>Resurrection</h3><p>Dead website from the Wayback Machine → modern static site on disk. Inventory → pull → clean → check → scan → report → export. Resumable at every stage, rate-respecting by design.</p></div><div class="card"><h3>Nothing faked, ever</h3><p>A missing file is listed as missing. Every rewrite is logged in <b>REWRITES.md</b>, every fetch digest-verified, every failure classified per-row. The verification report is the chain of custody.</p></div><div class="card"><h3>Publish gate</h3><p>Before anything ships: a scan for credentials and bulk personal data. Any unreviewed finding exits 1. The archive is honest even about what <b>shouldn't</b> be published.</p></div></div></section>
+
+<section id="evidence"><h2>Live-validated, not mocked</h2>
+<p style="font-size:14px;color:var(--mut);max-width:760px;margin-bottom:18px">Until November 2026 every test used a mocked archive. Then the first complete dig ran against the real Wayback Machine — 19 pipeline cycles over two days, zero crashes, through two live archive-degradation windows. Full per-cycle log: <a style="color:var(--a1)" href="https://github.com/adventurewave-labs/excavate/blob/main/docs/live-dig-2026-11-16.md">docs/live-dig-2026-11-16.md</a>.</p>
+<div class="evidence">
+<div class="ev"><div class="n">114,893</div><div class="l">raw CDX rows surveyed</div></div>
+<div class="ev blue"><div class="n">9,143</div><div class="l">unique URLs inventoried</div></div>
+<div class="ev"><div class="n">3,644</div><div class="l">captures fetched &amp; digest-verified</div></div>
+<div class="ev blue"><div class="n">3,207</div><div class="l">pages cleaned &amp; rebuilt</div></div>
+<div class="ev"><div class="n">98.7%</div><div class="l">of selected dig recovered</div></div>
+<div class="ev blue"><div class="n">49</div><div class="l">failures — disclosed, never faked</div></div>
+<div class="ev"><div class="n">VALID</div><div class="l">BagIt bag, RFC 8493 checksums</div></div>
+<div class="ev blue"><div class="n">0</div><div class="l">crashes across 19 cycles</div></div>
+</div>
+<p style="font-size:12.5px;color:var(--mut);margin-top:12px">First dig: <span class="mono" style="color:var(--a1)">info.cern.ch</span> — the web's own birthplace, 1991. A fitting first patient.</p>
+</section>
+
+<section id="pipeline"><h2>The pipeline</h2><div class="pipeline-list">
+<div class="step"><span class="k">INVENTORY</span><p>CDX survey — paginated, never collapsed or filtered. Every raw row kept.</p></div>
+<div class="step"><span class="k">PULL</span><p>≤30 req/min, <span class="mono">id_</span>→<span class="mono">im_</span> fallback, digest-verified, resumable.</p></div>
+<div class="step"><span class="k">CLEAN</span><p>De-Waybacked, page-relative links, charset-faithful, twins where archives allow.</p></div>
+<div class="step"><span class="k">CHECK</span><p>Walks every link: recovered / archived-not-recovered / never archived / orphans.</p></div>
+<div class="step"><span class="k">DISCOVER</span><p>Exact-URL lookups for linked-but-missing files — dead ends confirmed, not guessed.</p></div>
+<div class="step"><span class="k">SCAN</span><p>Publish gate: credentials &amp; bulk personal data. Exit 1 on unreviewed findings.</p></div>
+<div class="step"><span class="k">REPORT</span><p><span class="mono">VERIFICATION-REPORT.md</span> — counts, rewrites, gaps, chain of custody.</p></div>
+<div class="step"><span class="k">EXPORT</span><p>BagIt (RFC 8493) bag: site + raw captures + the full paper trail.</p></div>
+</div></section>
+
+<section id="commands"><h2>Commands</h2><div class="cmds">
+<div class="row"><span class="c">excavate run &lt;domain&gt;</span><span class="d">the whole pipeline; <span class="mono">--limit N</span> instalments, <span class="mono">--strict</span></span></div>
+<div class="row"><span class="c">excavate inventory &lt;domain&gt;</span><span class="d">CDX survey; <span class="mono">--match prefix|host|domain</span>, <span class="mono">--from/--to</span>, <span class="mono">--at DATE</span></span></div>
+<div class="row"><span class="c">excavate pull</span><span class="d">rate-limited fetches, resumable; <span class="mono">--dry-run</span> forecasts cost</span></div>
+<div class="row"><span class="c">excavate clean</span><span class="d">raw/ → site/, de-Waybacked, charset-faithful, twin swaps</span></div>
+<div class="row"><span class="c">excavate check</span><span class="d">walk the site's links → <span class="mono">crawl.json</span></span></div>
+<div class="row"><span class="c">excavate discover</span><span class="d">exact-URL CDX lookups for linked-but-missing files</span></div>
+<div class="row"><span class="c">excavate scan</span><span class="d">publish gate; <span class="mono">--allow FP --reason</span> to clear a false positive</span></div>
+<div class="row"><span class="c">excavate report</span><span class="d">verification report — counts, integrity, custody</span></div>
+<div class="row"><span class="c">excavate export</span><span class="d">BagIt bag; <span class="mono">--zip</span>, <span class="mono">--verify BAG</span> checks any bag</span></div>
+<div class="row"><span class="c">excavate status</span><span class="d">where the dig stands, what to run next — no network</span></div>
+</div></section>
+
+<section id="install"><h2>Install &amp; first dig</h2><div class="install">
+<pre><code>pip install -e .</code><button class="copy" onclick="navigator.clipboard.writeText('pip install -e .');this.textContent='copied ✓';setTimeout(()=>this.textContent='copy',1400)">copy</button></pre>
+<pre><code>excavate run info.cern.ch    # the web's birthplace — the first live-validated dig</code><button class="copy" onclick="navigator.clipboard.writeText('excavate run info.cern.ch');this.textContent='copied ✓';setTimeout(()=>this.textContent='copy',1400)">copy</button></pre>
+</div></section>
+
+<section id="explore"><h2>Explore</h2><div class="links">
+<a href="https://github.com/adventurewave-labs/excavate#readme">README <span class="arr">→</span></a>
+<a href="https://github.com/adventurewave-labs/excavate/releases/tag/v0.1.1">Release v0.1.1 <span class="arr">→</span></a>
+<a href="https://github.com/adventurewave-labs/excavate/blob/main/docs/specs/M0-resurrection-cli.md">M0 spec <span class="arr">→</span></a>
+<a href="https://github.com/adventurewave-labs/excavate/blob/main/docs/SOTA_ROADMAP.md">Hardening roadmap <span class="arr">→</span></a>
+<a href="https://github.com/adventurewave-labs/excavate/blob/main/docs/live-dig-2026-11-16.md">Live-dig evidence <span class="arr">→</span></a>
+<a href="https://github.com/adventurewave-labs/excavate/blob/main/docs/PRD.md">PRD v0.4 <span class="arr">→</span></a>
+<a href="https://github.com/adventurewave-labs/excavate/blob/main/LICENSE">MIT license <span class="arr">→</span></a>
+</div></section>
+</main>
+<footer>
+<div class="orgs">
+<a href="https://github.com/marcuspat">marcuspat</a>
+<a href="https://github.com/adventurewave-labs">adventurewave-labs</a>
+<a href="https://github.com/creandotumatrix-labs">creandotumatrix-labs</a>
+</div>
+<div>© Adventure Wave Labs · static page · no requests, no JS beyond copy buttons</div>
+</footer>
+</body>
+</html>
